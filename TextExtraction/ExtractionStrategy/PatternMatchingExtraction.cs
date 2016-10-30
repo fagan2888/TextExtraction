@@ -12,7 +12,7 @@ namespace TextExtration.ExtractionStrategy {
         }
         
         public List<string> extract(ITextObject textObject) {
-            string cuttedText = cutText(textObject.text());
+            string cuttedText = cutText(textObject.text);
             string pattern = patternWithLookAround();
             MatchCollection match = Regex.Matches(cuttedText, pattern);
             return matchToStringList(match).ToList();

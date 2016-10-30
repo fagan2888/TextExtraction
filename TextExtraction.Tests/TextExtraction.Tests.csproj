@@ -55,10 +55,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ExtractionBlock\PatternMatchingExtractionBlockTests.cs" />
+    <Compile Include="ExtractionStrategy\PatternMatchingExtractionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransformationBlock\RemoveGapBlockTests.cs" />
-    <Compile Include="TransformationBlock\RemoveSpecializedSymbolBlockTests.cs" />
+    <Compile Include="TransformationStrategy\RemoveGapTests.cs" />
+    <Compile Include="TransformationStrategy\RemoveSpecializedSymbolTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
