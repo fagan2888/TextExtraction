@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace TextExtration {
-    public interface ITransformationBlock:IBlock {
+    public interface ITransformationStrategy {
         IEnumerable<string> transform(IEnumerable<string> target);
     }
 }

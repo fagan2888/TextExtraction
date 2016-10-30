@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace TextExtration {
-    public interface IExtractionBlock:IBlock {
+    public interface IExtractionStrategy {
         List<string> extract(ITextObject textObject);
     }
 }

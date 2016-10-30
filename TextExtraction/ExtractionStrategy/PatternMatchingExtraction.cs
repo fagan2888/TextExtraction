@@ -2,13 +2,12 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace TextExtration.ExtractionBlock {
-    public class PatternMatchingExtractionBlock:IExtractionBlock {
-        public int order { get; set; }
-        public string name { get; set; }
+namespace TextExtration.ExtractionStrategy {
+    public class PatternMatchingExtraction:IExtractionStrategy {
+
         public TextExtractionPattern textPattern { get; set; }
 
-        public PatternMatchingExtractionBlock(TextExtractionPattern textPattern) {
+        public PatternMatchingExtraction(TextExtractionPattern textPattern) {
             this.textPattern = textPattern;
         }
         

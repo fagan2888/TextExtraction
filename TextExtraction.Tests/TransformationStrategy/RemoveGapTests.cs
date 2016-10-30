@@ -1,23 +1,24 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using TextExtration.TransformationStrategy;
 
-namespace TextExtration.TransformationBlock.Tests
+namespace TextExtraction.Tests.TransformationStrategy
 {
     [TestFixture()]
-    public class RemoveGapBlockTests
+    public class RemoveGapTests
     {
-        private RemoveGapBlock block_;
+        private RemoveGap strategy_;
         [SetUp]
         public void setUp()
         {
-            block_ = new RemoveGapBlock();
+            strategy_ = new RemoveGap();
         }
         [Test()]
         public void transformTest()
         {
             List<string> testList = new List<string>() { " 32", " ffe", " fewa", " ffe " };
             var result = new List<string>() { "32", "ffe", "fewa", "ffe" };
-            Assert.AreEqual(block_.transform(testList), result);
+            Assert.AreEqual(strategy_.transform(testList), result);
         }
     }
 }

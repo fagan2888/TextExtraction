@@ -44,15 +44,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBlock.cs" />
-    <Compile Include="ITransformationBlock.cs" />
-    <Compile Include="ExtractionBlock\PatternMatchingExtractionBlock.cs" />
+    <Compile Include="ExtractionResult.cs" />
+    <Compile Include="IExtractionStrategy.cs" />
+    <Compile Include="ITransformationStrategy.cs" />
+    <Compile Include="TransformationBlock.cs" />
+    <Compile Include="ExtractionStrategy\PatternMatchingExtraction.cs" />
     <Compile Include="ExtractionPipeline.cs" />
-    <Compile Include="IExtractionBlock.cs" />
+    <Compile Include="ExtractionBlock.cs" />
     <Compile Include="ITextObject.cs" />
-    <Compile Include="TransformationBlock\RemoveSpecializedSymbolBlock.cs" />
-    <Compile Include="TransformationBlock\RemoveGapBlock.cs" />
-    <Compile Include="ExtractionBlock\TextPattern.cs" />
+    <Compile Include="TransformationStrategy\RemoveSpecializedSymbol.cs" />
+    <Compile Include="TransformationStrategy\RemoveGap.cs" />
+    <Compile Include="ExtractionStrategy\TextPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-namespace TextExtration.ExtractionBlock {
+namespace TextExtration.ExtractionStrategy {
     public class TextExtractionPattern {
         public string cutBegin { get; private set; } = string.Empty;
         public string cutEnd { get; private set; } = string.Empty;

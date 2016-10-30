@@ -1,5 +1,5 @@
 ﻿namespace TextExtration {
     public interface ITextObject {
-        string text();
+        string text { get; set; }
     }
 }
