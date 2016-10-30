@@ -1,0 +1,8 @@
+language: csharp
+solution: TextExtraction.sln
+install:
+  - nuget restore TextExtraction.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release TextExtraction.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./TextExtraction.Tests/bin/Release/TextExtraction.Tests.dll
