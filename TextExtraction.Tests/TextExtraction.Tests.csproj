@@ -55,6 +55,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ExtractionPipelineTests.cs" />
     <Compile Include="ExtractionStrategy\PatternMatchingExtractionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransformationStrategy\RemoveGapTests.cs" />

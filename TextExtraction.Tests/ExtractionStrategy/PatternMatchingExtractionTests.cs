@@ -13,10 +13,10 @@ namespace TextExtraction.Tests.ExtractionStrategy
         [Test()]
         public void extractTest()
         {
-            var pattern = new TextExtractionPattern();
-            pattern.withCutting("cutting", "cutting");
-            pattern.withLookAround("before/", "/after");
-            pattern.withPattern(@"\s+?i want to find this text\.\s+?");
+            var pattern = new TextExtractionPattern()
+                .withCutting("cutting", "cutting")
+                .withLookAround("before/", "/after")
+                .withPattern(@"\s+?i want to find this text\.\s+?");
             var block = new PatternMatchingExtraction(pattern);
 
             var textObject = Substitute.For<ITextObject>();

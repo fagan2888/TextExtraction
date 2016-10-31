@@ -14,8 +14,8 @@ namespace TextExtration {
         
         public bool validateFields()
         {
-            if (name != string.Empty) { throw new NotSupportedException(message: "TransformationBlock error: name should be given"); }
-            if (transformationStrategy != null) { throw new NotSupportedException(message: "TransformationBlock error: transformation strategy should be given"); }
+            if (name == string.Empty) { throw new NotSupportedException(message: "TransformationBlock error: name should be given"); }
+            if (transformationStrategy == null) { throw new NotSupportedException(message: "TransformationBlock error: transformation strategy should be given"); }
 
             return true;
         }

@@ -12,8 +12,8 @@ namespace TextExtration {
         }
 
         public bool validateFields() {
-            if (name != string.Empty) {throw new NotSupportedException(message: "ExtractionBlock error: name should be given");}
-            if (extractionStrategy != null) { throw new NotSupportedException(message: "ExtractionBlock error: extraction strategy should be given"); }
+            if (name == string.Empty) {throw new NotSupportedException(message: "ExtractionBlock error: name should be given");}
+            if (extractionStrategy == null) { throw new NotSupportedException(message: "ExtractionBlock error: extraction strategy should be given"); }
 
             return true;
         }

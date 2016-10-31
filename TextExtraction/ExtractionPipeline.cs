@@ -32,16 +32,24 @@ namespace TextExtration
         
         private IEnumerable<ExtractionResult> performTransformationBlock(IEnumerable<ExtractionResult> originExtractionResults)
         {
-            foreach (var transformationBlock in transformationBlocks) {
-                var target = originExtractionResults.FirstOrDefault(r => r.id == transformationBlock.targetExtractionId);
-                if (target == null) 
-                    throw new NullReferenceException("ExtractionPipeline_performTransformationBlock: tartget extraction id not founded");       
+            foreach (var originResult in originExtractionResults) {
+                var transformStrategiesForCurrentOriginResult =
+                    transformationBlocks.Where(b => b.targetExtractionId == originResult.id)
+                        .Select(b => b.transformationStrategy).ToList();
 
-                yield return new ExtractionResult(target.id, target.name, transformationBlock.transform(target.result));
+                if (transformStrategiesForCurrentOriginResult.Count != 0) {
+                    IEnumerable<string> tmpResult = originResult.result;
+                    foreach (var strategy in transformStrategiesForCurrentOriginResult) {
+                        tmpResult = strategy.transform(tmpResult);
+                    }
+                    yield return new ExtractionResult(originResult.id, originResult.name, tmpResult);
+                }
             }
         }
 
-        private static void blockValidation(IEnumerable<ExtractionBlock> extractionBlocks, IEnumerable<TransformationBlock> transformationBlocks) {
+        private static void blockValidation(
+            IEnumerable<ExtractionBlock> extractionBlocks
+            , IEnumerable<TransformationBlock> transformationBlocks) {
             foreach (var extractionBlock in extractionBlocks)
                 extractionBlock.validateFields();
 
