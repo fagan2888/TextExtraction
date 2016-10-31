@@ -20,7 +20,7 @@ namespace TextExtration.ExtractionStrategy {
 
         private string cutText(string text){
             if (textPattern.isCuttable())
-                return Regex.Matches(text, $@"(?<={textPattern.cutBegin})(.+?|\d+?|\d+?\.\d+?)(?={textPattern.cutEnd})")[
+                return Regex.Matches(text, $@"(?<={textPattern.cutBegin})(.+|\d+|\d+\.\d+)(?={textPattern.cutEnd})")[
                         textPattern.cutIndex].Value;
             return text;
         }
@@ -34,7 +34,7 @@ namespace TextExtration.ExtractionStrategy {
                 : $"(?={textPattern.lookAhead})";
             var pattern = textPattern.hasPattern()
                 ? textPattern.pattern
-                : @"(.+?|\d +?|\d +?\.\d +?)";
+                : @"(.+|\d+|\d+\.\d+)";
 
             return $"{beginPattern}{pattern}{endPattern}";
         }
