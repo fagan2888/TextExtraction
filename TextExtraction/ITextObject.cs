@@ -1,5 +1,9 @@
 ﻿namespace TextExtration {
     public interface ITextObject {
-        string text { get; set; }
+        void open();
+        void close();
+        string path();
+        string text();
+        dynamic toObject();
     }
 }

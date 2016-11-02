@@ -15,7 +15,7 @@ namespace TextExtration.Tests
         [SetUp]
         public void setUp() {
             testTextObject_ = Substitute.For<ITextObject>();
-            testTextObject_.text.Returns("one: star \r\n two: cow \r\n three: dog \r\n four: QuestionMark"
+            testTextObject_.text().Returns("one: star \r\n two: cow \r\n three: dog \r\n four: QuestionMark"
                 + "하나- 별, 둘- 소, 셋- 개, 넷- 물음표");
         }
 

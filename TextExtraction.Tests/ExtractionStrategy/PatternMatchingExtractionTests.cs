@@ -20,7 +20,7 @@ namespace TextExtraction.Tests.ExtractionStrategy
             var block = new PatternMatchingExtraction(pattern);
 
             var textObject = Substitute.For<ITextObject>();
-            textObject.text.Returns(testText);
+            textObject.text().Returns(testText);
 
             var result = " i want to find this text. ";
             Assert.AreEqual(block.extract(textObject)[0], result);
