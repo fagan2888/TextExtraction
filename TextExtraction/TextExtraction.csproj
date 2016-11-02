@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContainsCheckBlock.cs" />
+    <Compile Include="ContainsCheckPipeline.cs" />
     <Compile Include="ExtractionResult.cs" />
     <Compile Include="IExtractionStrategy.cs" />
     <Compile Include="ITransformationStrategy.cs" />
