@@ -1,0 +1,11 @@
+{
+	"order": 1,
+	"name": "testBlock",
+	"extractionStrategy":{
+    "$type": "TextExtration.ExtractionStrategy.PatternMatchingExtraction, TextExtration",
+    "textPattern": {
+      "cutBegin": "test",
+      "cutEnd": "test"  
+    } 
+	}
+}
