@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Office.Interop.Word;
+using NetOffice.WordApi;
 
 namespace TextExtration.TextObject {
     public class DocTextObject : ITextObject {
@@ -55,10 +55,10 @@ namespace TextExtration.TextObject {
         private void setApplication() {
             application = new Application() { Visible = true };
             applicationActiveState_ = true;
-            ((ApplicationEvents4_Event)application).Quit
-                += new ApplicationEvents4_QuitEventHandler(() => { applicationActiveState_ = false; });
+            application.QuitEvent+= () => { applicationActiveState_ = false; };
             currentDocTextObject_ = null;
         }
         
+
     }
 }
