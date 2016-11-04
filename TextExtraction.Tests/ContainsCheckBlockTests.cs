@@ -26,12 +26,8 @@ namespace TextExtration.Tests
         public void containsTest()
         {
             var pattern = new TextExtractionPattern().withCutting("one", "two");
-            var testExtractionBlock = new ExtractionBlock() {
-                order = 1, name = "find star", extractionStrategy = new PatternMatchingExtraction(pattern)
-            };
-
             var testContainsCheckBlock = new ContainsCheckBlock() {
-                extractionBlock = testExtractionBlock,
+                extractionStrategy = new PatternMatchingExtraction(pattern),
                 findTarget = "star"
             };
 

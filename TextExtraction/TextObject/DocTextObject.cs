@@ -4,7 +4,7 @@ using NetOffice.WordApi;
 namespace TextExtration.TextObject {
     public class DocTextObject : ITextObject {
 
-        private static Application application { get; set; }
+        private static Application application_;
         private static bool applicationActiveState_;
         private static DocTextObject currentDocTextObject_;
 
@@ -21,10 +21,12 @@ namespace TextExtration.TextObject {
                 if (!applicationActiveState_) 
                     setApplication();
 
-                currentDocTextObject_?.close();
+                if (currentDocTextObject_ != this) {
+                    currentDocTextObject_?.close();
 
-                doc_ = application.Documents.Open(path_);
-                currentDocTextObject_ = this;
+                    doc_ = application_.Documents.Open(path_);
+                    currentDocTextObject_ = this;
+                }
             }
             catch (Exception e) {
                 throw new InvalidOperationException(message:$"DocTextObject: fail to open document {path_}\r\n{e.Message}");
@@ -52,10 +54,12 @@ namespace TextExtration.TextObject {
 
         public dynamic toObject() => doc_;
 
+        public Application application() => application_;
+
         private void setApplication() {
-            application = new Application() { Visible = true };
+            application_ = new Application() { Visible = true };
             applicationActiveState_ = true;
-            application.QuitEvent+= () => { applicationActiveState_ = false; };
+            application_.QuitEvent+= () => { applicationActiveState_ = false; };
             currentDocTextObject_ = null;
         }
         

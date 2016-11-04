@@ -5,9 +5,10 @@ using System.Linq;
 namespace TextExtration
 {
     public class ExtractionPipeline {
-        public IEnumerable<ExtractionBlock> extractionBlocks { get; private set; }
-        public IEnumerable<TransformationBlock> transformationBlocks { get; private set; }
-        
+        public IEnumerable<ExtractionBlock> extractionBlocks { get; set; }
+        public IEnumerable<TransformationBlock> transformationBlocks { get; set; }
+
+        public ExtractionPipeline() {}
         public ExtractionPipeline(IEnumerable<ExtractionBlock> extractionBlocks, IEnumerable<TransformationBlock> transformationBlocks) {
             blockValidation(extractionBlocks, transformationBlocks);
 

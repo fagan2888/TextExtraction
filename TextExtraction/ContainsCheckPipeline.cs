@@ -1,20 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TextExtration {
     public class ContainsCheckPipeline {
-        private readonly IDictionary<ContainsCheckBlock, bool> containsCheckBlocksAndExpectedResultDirDictionary_;
+        public IEnumerable<ContainsCheckBlock> containsCheckBlocks { get; set; }
+        public IEnumerable<bool> expectedResults { get; set; }
 
-        public ContainsCheckPipeline(IDictionary<ContainsCheckBlock, bool> containsCheckBlocksAndExpectedResultDirDictionary) {
-            containsCheckBlocksAndExpectedResultDirDictionary_ = containsCheckBlocksAndExpectedResultDirDictionary;
+        public ContainsCheckPipeline() {}
+        public ContainsCheckPipeline(IEnumerable<ContainsCheckBlock> containsCheckBlocks, IEnumerable<bool> expectedResults) {
+            this.containsCheckBlocks = containsCheckBlocks;
+            this.expectedResults = expectedResults;
+            lengthValidation(containsCheckBlocks, expectedResults);
         }
-
+        
         public bool check(ITextObject text) {
-            foreach (var checkBlock in containsCheckBlocksAndExpectedResultDirDictionary_) {
-                if(checkBlock.Key.contains(text) != checkBlock.Value)
+            lengthValidation(containsCheckBlocks, expectedResults);
+            var lstExpectedResults = expectedResults.ToList();
+            foreach (var checkBlock in containsCheckBlocks.Select((v, i)=> new {value = v, index = i})) {
+                if(checkBlock.value.contains(text) != lstExpectedResults[checkBlock.index])
                     return false;
             }
 
             return true;
+        }
+
+        private static void lengthValidation(IEnumerable<ContainsCheckBlock> containsCheckBlocks, IEnumerable<bool> expectedResults)
+        {
+            if (containsCheckBlocks.Count() != expectedResults.Count()){
+                throw new ArgumentException(
+                    message: "ContainsCheckPipeline: containsCheckBlocks and extectedResults must have same length");
+            }
         }
     }
 }

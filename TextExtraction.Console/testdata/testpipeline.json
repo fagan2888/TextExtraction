@@ -1,0 +1,46 @@
+﻿{
+  "extractionBlocks": [
+    {
+      "$type": "TextExtration.ExtractionBlock, TextExtration",
+      "order": 1,
+      "name": "testBlock1",
+      "extractionStrategy": {
+        "$type": "TextExtration.ExtractionStrategy.PatternMatchingExtraction, TextExtration",
+        "textPattern": {
+          "$type": "TextExtration.ExtractionStrategy.TextExtractionPattern, TextExtration",
+          "cutBegin": "test1",
+          "cutEnd": "test1"
+        }
+      }
+    },
+    {
+      "$type": "TextExtration.ExtractionBlock, TextExtration",
+      "order": 2,
+      "name": "testBlock2",
+      "extractionStrategy": {
+        "$type": "TextExtration.ExtractionStrategy.PatternMatchingExtraction, TextExtration",
+        "textPattern": {
+          "$type": "TextExtration.ExtractionStrategy.TextExtractionPattern, TextExtration",
+          "cutBegin": "test2",
+          "cutEnd": "test2"
+        }
+      }
+    }],
+  "transformationBlocks": [
+  {
+	"$type": "TextExtration.TransformationBlock, TextExtration",
+	"order": 1,
+	"name": "testBlock1",
+	"targetExtractionId": 1,
+	"transformationStrategy": {
+		"$type": "TextExtration.TransformationStrategy.RemoveGap, TextExtration"}
+	},
+    {
+  	"$type": "TextExtration.TransformationBlock, TextExtration",
+	"order": 2,
+	"name": "testBlock2",
+	"targetExtractionId": 2,
+	"transformationStrategy": {
+		"$type": "TextExtration.TransformationStrategy.RemoveGap, TextExtration"}
+    }] 
+}
