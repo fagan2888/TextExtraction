@@ -11,8 +11,6 @@ namespace TextExtration.Tests
         private ITextObject testTextObject_;
         private List<ContainsCheckBlock> checkBlocks_;
         private List<bool> results_;
-        private readonly ExtractionBlock testExtractionBlock1_;
-        private readonly ExtractionBlock testExtractionBlock2_;
         private TextExtractionPattern pattern = new TextExtractionPattern().withCutting("one", "three");
         private IExtractionStrategy extractionStrategy_;
         public ContainsCheckPipelineTests() {
