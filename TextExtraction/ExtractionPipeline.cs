@@ -31,21 +31,24 @@ namespace TextExtration
             }
         }
         
-        private IEnumerable<ExtractionResult> performTransformationBlock(IEnumerable<ExtractionResult> originExtractionResults)
-        {
+        private IEnumerable<ExtractionResult> performTransformationBlock(IEnumerable<ExtractionResult> originExtractionResults){
             foreach (var originResult in originExtractionResults) {
-                var transformStrategiesForCurrentOriginResult =
+                if (transformationBlocks != null) {
+                    var transformStrategiesForCurrentOriginResult =
                     transformationBlocks.Where(b => b.targetExtractionId == originResult.id)
-                        .Select(b => b.transformationStrategy).ToList();
+                        .Select(b => b.transformationStrategy);
 
-                if (transformStrategiesForCurrentOriginResult.Count != 0) {
-                    IEnumerable<string> tmpResult = originResult.result;
-                    foreach (var strategy in transformStrategiesForCurrentOriginResult) {
-                        tmpResult = strategy.transform(tmpResult);
+                    if (transformStrategiesForCurrentOriginResult.Count() != 0){
+                        IEnumerable<string> tmpResult = originResult.result;
+                        foreach (var strategy in transformStrategiesForCurrentOriginResult){
+                            tmpResult = strategy.transform(tmpResult);
+                        }
+                        yield return new ExtractionResult(originResult.id, originResult.name, tmpResult);
                     }
-                    yield return new ExtractionResult(originResult.id, originResult.name, tmpResult);
+                }else {
+                    yield return originResult;
                 }
-            }
+             }
         }
 
         private static void blockValidation(
