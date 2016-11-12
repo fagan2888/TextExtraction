@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace TextExtration
@@ -52,8 +51,7 @@ namespace TextExtration
         }
 
         private static void blockValidation(
-            IEnumerable<ExtractionBlock> extractionBlocks
-            , IEnumerable<TransformationBlock> transformationBlocks) {
+            IEnumerable<ExtractionBlock> extractionBlocks, IEnumerable<TransformationBlock> transformationBlocks) {
             foreach (var extractionBlock in extractionBlocks)
                 extractionBlock.validateFields();
 
