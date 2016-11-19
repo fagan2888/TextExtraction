@@ -26,6 +26,7 @@ namespace TextExtraction.Console
                 System.Console.WriteLine("5. deserialize json extractionblock");
                 System.Console.WriteLine("6. deserialize json extraction pipeline");
                 System.Console.WriteLine("7. deserialize json contains check pipeline");
+                System.Console.WriteLine("8. get text from docstringtextobject");
                 System.Console.WriteLine("or type 'exit'");
                 var selectedTest = System.Console.ReadLine();
 
@@ -206,6 +207,12 @@ namespace TextExtraction.Console
                     System.Console.WriteLine();
                     System.Console.WriteLine($@"checkpipeline result: {pipeline.expectedResults.ToList()[1]}");
                     System.Console.WriteLine($@"checkpipeline findText: {checkBlock.findTarget}");
+                }
+                if (selectedTest == "8"){
+                    System.Console.WriteLine("target path:");
+                    var path = System.Console.ReadLine();
+                    var docstringDocObject = new DocStringTextObject(path);
+                    System.Console.WriteLine(docstringDocObject.text());
                 }
                 if (selectedTest == "exit") {
                     return;

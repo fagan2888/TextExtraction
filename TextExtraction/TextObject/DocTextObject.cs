@@ -62,7 +62,5 @@ namespace TextExtration.TextObject {
             application_.QuitEvent+= () => { applicationActiveState_ = false; };
             currentDocTextObject_ = null;
         }
-        
-
     }
 }
