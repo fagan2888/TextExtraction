@@ -27,6 +27,7 @@ namespace TextExtraction.Console
                 System.Console.WriteLine("6. deserialize json extraction pipeline");
                 System.Console.WriteLine("7. deserialize json contains check pipeline");
                 System.Console.WriteLine("8. get text from docstringtextobject");
+                System.Console.WriteLine("9. kill pdf process");
                 System.Console.WriteLine("or type 'exit'");
                 var selectedTest = System.Console.ReadLine();
 
@@ -213,6 +214,15 @@ namespace TextExtraction.Console
                     var path = System.Console.ReadLine();
                     var docstringDocObject = new DocStringTextObject(path);
                     System.Console.WriteLine(docstringDocObject.text());
+                }
+                if (selectedTest == "9") {
+                    System.Console.WriteLine("open test pdf");
+                    System.Console.ReadKey();
+                    var pdfObject = new PdfTextObject(@"testdata\Test document.pdf");
+                    pdfObject.open();
+                    System.Console.WriteLine("kill test pdf");
+                    System.Console.ReadKey();
+                    pdfObject.close();
                 }
                 if (selectedTest == "exit") {
                     return;

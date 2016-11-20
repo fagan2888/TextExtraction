@@ -21,7 +21,8 @@ namespace TextExtration.TextObject {
                 if (!applicationActiveState_) 
                     setApplication();
 
-                if (currentDocTextObject_ != this) {
+                // not isActive, currentdoctextobject를 닫고 this로 교체
+                if (!isActive()) {
                     currentDocTextObject_?.close();
 
                     doc_ = application_.Documents.Open(path_);
@@ -34,10 +35,11 @@ namespace TextExtration.TextObject {
         }
 
         public void close() {
-            if (currentDocTextObject_ == this) currentDocTextObject_ = null;
-
-            doc_.Close();
-            doc_ = null;
+            if (isActive()) {
+                doc_.Close();
+                doc_ = null;
+                currentDocTextObject_ = null;
+            }
         }
 
         public string path() => path_;
@@ -53,6 +55,9 @@ namespace TextExtration.TextObject {
         }
 
         public dynamic toObject() => doc_;
+        public bool isActive() {
+            return currentDocTextObject_ == this;
+        }
 
         public Application application() => application_;
 

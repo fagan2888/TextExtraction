@@ -34,14 +34,17 @@ namespace TextExtration.TextObject {
             if (string.IsNullOrEmpty(text_)) {
                 var document = new Document();
                 document.LoadFromFile(path_);
-
-                return document.GetText();
+                text_ = document.GetText().Replace("\r\n", " ");
             }
             return text_;
         }
 
         public dynamic toObject() {
             return docTextObject_.toObject();
+        }
+
+        public bool isActive() {
+            return docTextObject_.isActive();
         }
 
         public Application application() => docTextObject_.application();

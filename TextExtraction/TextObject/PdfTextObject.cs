@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
+using Path = System.IO.Path;
 
 namespace TextExtration.TextObject {
     public class PdfTextObject:ITextObject {
@@ -19,7 +20,7 @@ namespace TextExtration.TextObject {
         }
 
         public void close() {
-            throw new System.NotImplementedException(message: "cannot close pdf process");
+            FindAndKillProcess(Path.GetFileNameWithoutExtension(path_));
         }
 
         public string path() => path_;
@@ -38,5 +39,18 @@ namespace TextExtration.TextObject {
         }
 
         public dynamic toObject() => new PdfReader(path_);
+        public bool isActive() {
+            return FindAndKillProcess(Path.GetFileNameWithoutExtension(path_), false);
+        }
+
+        private bool FindAndKillProcess(string name, bool killFlag = true){
+            foreach (Process clsProcess in Process.GetProcesses()){
+                if (clsProcess.MainWindowTitle.Contains(name)){
+                    if (killFlag) clsProcess.Kill();
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

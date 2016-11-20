@@ -5,5 +5,6 @@
         string path();
         string text();
         dynamic toObject();
+        bool isActive();
     }
 }
