@@ -54,7 +54,11 @@ namespace TextExtration.TextObject {
             return text_;
         }
 
-        public dynamic toObject() => doc_;
+        public dynamic toObject() {
+            if (doc_ == null) open();
+            return doc_;
+        }
+
         public bool isActive() {
             return currentDocTextObject_ == this;
         }
