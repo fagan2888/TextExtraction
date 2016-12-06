@@ -6,7 +6,7 @@ using Path = System.IO.Path;
 
 namespace TextExtration.TextObject {
     public class PdfTextObject:ITextObject {
-        private string path_;
+        private readonly string path_;
         private string text_ = String.Empty;
 
         public PdfTextObject(string path) {

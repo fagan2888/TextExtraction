@@ -9,7 +9,7 @@ namespace TextExtration.TextObject {
         private static DocTextObject currentDocTextObject_;
 
         private Document doc_;
-        private string path_;
+        private readonly string path_;
         private string text_ = String.Empty;
 
         public DocTextObject(string path) {

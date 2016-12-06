@@ -1,13 +1,14 @@
 ﻿using System;
 using NetOffice.WordApi;
+using Utility.syonoki.ExtensionMethods;
 using Document = Spire.Doc.Document;
 
 namespace TextExtration.TextObject {
     public class DocStringTextObject:ITextObject {
 
-        private string path_;
+        private readonly string path_;
         private string text_ = String.Empty;
-        private DocTextObject docTextObject_;
+        private readonly DocTextObject docTextObject_;
 
         public DocStringTextObject(string path) {
             path_ = path;
@@ -34,12 +35,14 @@ namespace TextExtration.TextObject {
             if (string.IsNullOrEmpty(text_)) {
                 var document = new Document();
                 document.LoadFromFile(path_);
-                text_ = document.GetText().Replace("\r\n", " ");
+                text_ = document.GetText().replace(new string[,] {{"\r\n", " "}, {"\t", " "} });
             }
             return text_;
         }
 
         public dynamic toObject() {
+            if(!docTextObject_.isActive())
+                docTextObject_.open();
             return docTextObject_.toObject();
         }
 
