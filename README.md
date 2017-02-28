@@ -5,7 +5,7 @@
 `TextExtraction`은 다양한 문서형태로부터 구조적으로 Text를 추출하기 위한 라이브러리입니다.
 
 
-## Key component
+## Key components
 * ITextObject: 문서파일을 다루기 위한 component입니다. 기본적으로 Word file과 pdf file을 지원하지만 어떤 형태의 문서로도 확장이 가능합니다.
 * IExtractionStrategy: 텍스트 추출을 위한 조건을 정의하는 component입니다. 기본적으로 regular expression의 pattern를 이용한 strategy가 제공 되지만 어떠한 형태의 추출 형태로도 확장이 가능합니다.
 * ExtractionBlock: ExtractionPipeline을 구성하는 하나의 요소입니다. pipeline상 적용 순서, 이름, ExtractionStrategy를 포함합니다.
